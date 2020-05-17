@@ -1,0 +1,15 @@
+# ansible-playbook -i hosts playbooks/kubeststus.yml --extra-vars "hostlist=cluster"
+
+- name: Ping all Hosts in {{ hostlist }}
+  become: 'yes'
+  become_method: sudo
+  hosts: 
+  - "{{ hostlist }}"
+
+  tasks:
+  - name: Check Service Status {{ hostlist }}
+    command: systemctl status "{{ item }}"
+    with_items:
+    - k3s
+    register: result
+    ignore_errors: yes    

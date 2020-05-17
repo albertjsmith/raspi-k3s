@@ -1,0 +1,9 @@
+# ansible-playbook -i hosts playbooks/ping.yml --extra-vars "hostlist=cluster"
+
+- name: Ping all Hosts in {{ hostlist }}
+  hosts: 
+  - "{{ hostlist }}"
+
+  tasks:
+  - name: Running Ping on {{ hostlist }}
+    action: ping

@@ -1,0 +1,13 @@
+# ansible-playbook -i hosts playbooks/shutdown.yml --extra-vars "hostlist=cluster"
+---
+- name: shutdown
+  become: 'yes'
+  become_method: sudo
+  hosts: 
+  - "{{ hostlist }}"
+
+  tasks:
+  - name: Running Shutdown on {{ hostlist }}
+    command: /sbin/shutdown -h now
+    when: ansible_facts['os_family'] == "Debian"
+    ignore_errors: 'yes'

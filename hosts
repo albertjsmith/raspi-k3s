@@ -1,0 +1,15 @@
+[dns]
+pihole       ansible_host=192.168.0.2
+
+[dns:vars]
+ansible_connection=ssh
+ansible_user=smitha
+
+[cluster]
+picluster1   ansible_host=192.168.0.21
+picluster2   ansible_host=192.168.0.22
+picluster3   ansible_host=192.168.0.23
+
+[cluster:vars]
+ansible_connection=ssh
+ansible_user=ans
